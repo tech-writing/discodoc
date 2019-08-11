@@ -1,0 +1,8 @@
+include setup.cfg *.rst *.md LICENSE
+exclude .bumpversion.cfg
+exclude *.txt
+recursive-include discodoc *.py *.ini
+recursive-include discodoc *.html *.css *.json
+recursive-include discodoc *.md LICENSE
+recursive-exclude discodoc *.pyc __pycache__
+prune tests
