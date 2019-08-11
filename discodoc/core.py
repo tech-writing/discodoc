@@ -37,8 +37,10 @@ def discourse_to_document(url, format=None, output_path=None):
 
     format = format or 'pdf'
 
-    # Acquire posts from topic.
-    url = url + '.json'
+    # Acquire all posts from topic.
+    # Remark: The ``print=true`` option will return up to 1000 posts in a topic.
+    # API Documentation: https://docs.discourse.org/#tag/Topics%2Fpaths%2F~1t~1%7Bid%7D.json%2Fget
+    url = url + '.json?print=true'
     response = requests.get(url)
 
     # Extract information.
