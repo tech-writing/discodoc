@@ -1,50 +1,45 @@
-#!/usr/bin/env python
-"""
-========
-Synopsis
-========
-::
-
-    pandisco https://community.hiveeyes.org/t/anleitung-aufbau-und-installation-des-sensor-kits-grune-platine/2443
-
-
-=====
-Setup
-=====
-::
-
-    brew install pandoc python3-requests
-    brew cask install basictex
-
-Alternative::
-
-    pip install requests
-
-
-=======
-Backlog
-=======
-- Obtain output format from commandline
-- Obtain PANDOC_OPTIONS from environment
-- Select specific posts
-
-"""
+# -*- coding: utf-8 -*-
+# (c) 2019 Andreas Motl <andreas@hiveeyes.org>
+# License: GNU Affero General Public License, Version 3
 import os
 import sys
 import shlex
+import logging
 import tempfile
 import requests
 import subprocess
 
+log = logging.getLogger(__name__)
 
-def discourse_to_pdf(url, format=None):
+
+class DiscodocCommand:
+
+    def __init__(self, options):
+        self.options = options
+
+    def run(self):
+
+        if self.options.path is None:
+            self.options.path = os.getcwd()
+
+        if not os.path.isdir(self.options.path):
+            raise KeyError('Output directory "{}" does not exist'.format(self.options.path))
+
+        # Unique identifier generators
+        #if self.options.format == 'pdf':
+        discourse_to_document(self.options.url, format=self.options.format, output_path=self.options.path)
+
+        #else:
+        #    raise KeyError('Output format "{}" not implemented'.format(self.options.format))
+
+
+def discourse_to_document(url, format=None, output_path=None):
 
     format = format or 'pdf'
 
     # Acquire posts from topic.
     url = url + '.json'
     response = requests.get(url)
-    #print(response.text)
 
     # Extract information.
     data = response.json()
@@ -54,16 +49,24 @@ def discourse_to_pdf(url, format=None):
         sections.append(post['cooked'])
 
     # Debugging.
-    #print(title)
-    #print(sections)
+    #print(title); print(sections)
 
-    print(f'INFO: Writing standalone file "{title}.{format}"')
+    log.info('Writing standalone file "{title}.{format}"'.format(**locals()))
 
     # By default, pandoc produces a document fragment. To produce a
     # standalone  document (e.g.  a valid HTML file including <head>
     # and <body>), use the --standalone flag.
-    command = f'pandoc --standalone --metadata title="{title}" --output "{title}.{format}" --from html'
-    print('command:', command)
+    formatter = format
+    if format == 'pdf':
+        formatter = 'latex'
+
+    output_file = '{title}.{format}'.format(**locals())
+    if output_path is not None:
+        output_file = os.path.join(output_path, output_file)
+
+    command = 'pandoc --standalone --metadata title="{title}" --table-of-contents ' \
+              '--from html --to {formatter} --output "{output_file}"'.format(**locals())
+    log.info('Invoking command: %s', command)
 
     # Write sections to files.
     files = []
@@ -81,10 +84,12 @@ def discourse_to_pdf(url, format=None):
     # Run command.
     pargs = shlex.split(command)
     pargs.extend(filenames)
-    print('command:', pargs)
 
-    response = subprocess.run(pargs)
-    print('response:', response)
+    try:
+        outcome = subprocess.run(pargs, capture_output=True, timeout=60.0, check=True, encoding='utf-8')
+
+    except Exception as ex:
+        log.exception('Running pandoc failed, output was\nSTDOUT:\n{}\nSTDERR:\n{}\n'.format(ex.stdout, ex.stderr))
 
 
 def main():
@@ -94,7 +99,7 @@ def main():
     except:
         format = None
 
-    discourse_to_pdf(url, format=format)
+    discourse_to_document(url, format=format)
 
 
 if __name__ == '__main__':
