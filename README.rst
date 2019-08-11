@@ -78,6 +78,14 @@ Credits
 
 Thanks!
 
+
+**************
+Other programs
+**************
+- https://github.com/pfaffman/discourse-downloader
+  - via: https://meta.discourse.org/t/struggling-with-pagination-within-search-query-json/59558/3
+
+
 .. _Donald Knuth: https://www-cs-faculty.stanford.edu/~knuth/
 .. _LaTeX Team: https://www.latex-project.org/about/team/
 .. _pandoc: https://pandoc.org/
