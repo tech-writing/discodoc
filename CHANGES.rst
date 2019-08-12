@@ -5,6 +5,8 @@ discodoc changelog
 
 in progress
 ===========
+- To respect privacy, skip all whisper posts when collecting cooked HTML fragments
+- Improve logging
 
 
 2019-08-12 0.2.0

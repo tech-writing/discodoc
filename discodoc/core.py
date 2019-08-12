@@ -2,10 +2,11 @@
 # (c) 2019 Andreas Motl <andreas@hiveeyes.org>
 # License: GNU Affero General Public License, Version 3
 import os
-import sys
 import shlex
 import logging
 import tempfile
+from pprint import pprint
+
 import requests
 import subprocess
 
@@ -55,7 +56,7 @@ class DiscodocCommand:
         # Acquire all posts from topic.
         # Remark: The ``print=true`` option will return up to 1000 posts in a topic.
         # API Documentation: https://docs.discourse.org/#tag/Topics%2Fpaths%2F~1t~1%7Bid%7D.json%2Fget
-        url = url + '.json?print=true'
+        url = url + '.json?include_raw=true&print=true'
         response = requests.get(url, headers=self.headers)
     
         try:
@@ -66,12 +67,24 @@ class DiscodocCommand:
     
         # Extract information.
         data = response.json()
+        log.info('Collecting posts from topic #{id} "{title}" created at {created_at}'.format(**data))
+
         title = data['title']
         sections = []
+
+        # Debugging
+        #pprint(data)
+
         for post in data['post_stream']['posts']:
+
             if post.get('post_type') == 4:
                 log.info('Skipping whisper post number {post_number}'.format(**post))
                 continue
+
+            abstract = post['raw'][:50].replace('\n', ' ')
+            log.info('Collecting post number {post_number} from topic {topic_id} '
+                     'created at {created_at} "{abstract}..."'.format(**post, abstract=abstract))
+
             sections.append(post['cooked'])
     
         # Debugging.
