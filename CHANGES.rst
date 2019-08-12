@@ -9,6 +9,7 @@ in progress
 - Add Discourse Api-Key authentication against hitting anonymous rate limits
 - Improve documentation
 - Add "--renderer" option for adjusting rendering with "--format=pdf|html"
+- Add basic sandbox resource acquisition for assets required for HTML-based presentation/slideshow
 
 
 2019-08-12 0.1.0

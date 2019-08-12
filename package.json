@@ -1,0 +1,39 @@
+{
+  "name": "discodoc-resources",
+  "description": "discodoc - create hardcopy-like documents from Discourse content easily",
+  "version": "0.1.0",
+  "license": [
+    "AGPL 3",
+    "EUPL 1.2"
+  ],
+  "author": {
+    "name": "Andreas Motl",
+    "email": "andreas@hiveeyes.org"
+  },
+  "keywords": [
+    "discourse",
+    "pandoc",
+    "document",
+    "hardcopy",
+    "export",
+    "pdf",
+    "epub",
+    "docx",
+    "pptx",
+    "odt",
+    "html",
+    "s5",
+    "reveal.js"
+  ],
+  "homepage": "https://github.com/hiveeyes/discodoc",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hiveeyes/discodoc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hiveeyes/discodoc/issues"
+  },
+  "devDependencies": {
+    "reveal.js": "^3.8.0"
+  }
+}

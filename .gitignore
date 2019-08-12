@@ -4,3 +4,6 @@
 /.venv*
 /dist
 .notes.rst*
+/node_modules
+yarn-error.log
+yarn.lock
