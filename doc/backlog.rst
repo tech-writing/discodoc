@@ -6,8 +6,8 @@ Prio 1
 ======
 - [x] Obtain output format from commandline
 - [x] Check paging re. multiple posts
-- [o] Resolve format <=> formatter intertwingulation
-- [o] Slides: beamer, reveal.js
+- [x] Resolve format <=> formatter intertwingulation
+- [x] Slides: beamer, reveal.js
 - [o] Multi-topic acquisition
 - [o] Obtain title from command line
 - [o] Improve layout, e.g. border and padding of PDF document created through latex renderer
