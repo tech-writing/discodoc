@@ -69,6 +69,9 @@ class DiscodocCommand:
         title = data['title']
         sections = []
         for post in data['post_stream']['posts']:
+            if post.get('post_type') == 4:
+                log.info('Skipping whisper post number {post_number}'.format(**post))
+                continue
             sections.append(post['cooked'])
     
         # Debugging.
