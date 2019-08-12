@@ -70,6 +70,19 @@ pdf, docx, odt, pptx, epub2, epub3, fb2, latex, texinfo, html, html5, json, plai
 
 
 *******
+Caveats
+*******
+If you are hitting one of the `global rate limits and throttling in Discourse`_ indicated like::
+
+    {"errors":["You’ve performed this action too many times, please try again later."]}
+
+You might want to authenticate using an appropriate API key like::
+
+    export DISCOURSE_API_KEY=5c58bf5e4027622543f5179938182099c8b97188d00a9dc9f184cd3ca66db5ea
+
+.. _global rate limits and throttling in Discourse: https://meta.discourse.org/t/global-rate-limits-and-throttling-in-discourse/78612
+
+*******
 Credits
 *******
 - `Donald Knuth`_ and the `LaTeX Team`_ for conceiving and maintaining TeX and LaTeX.

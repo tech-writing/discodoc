@@ -17,7 +17,7 @@ def run():
     discodoc - create hardcopy-like documents from Discourse content easily
 
     Usage:
-      discodoc <url> [--format=<format>] [--path=<output-path>] [--debug]
+      discodoc <url> [--format=<format>] [--path=<output-path>] [--api-key=<api-key>] [--debug]
       discodoc --version
       discodoc (-h | --help)
 
@@ -25,6 +25,8 @@ def run():
       --format=<format>                 Output format.
                                         Use any format of pandoc, e.g. pdf, epub. [Default: pdf]
       --path=<path>                     Output directory. Defaults to the current working directory.
+      --api-key=<api-key>               Discourse API key. Can also be obtained through environment
+                                        variable "DISCOURSE_API_KEY".
       --version                         Show version information
       --debug                           Enable debug messages
       -h --help                         Show this screen

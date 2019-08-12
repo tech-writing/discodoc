@@ -27,19 +27,32 @@ class DiscodocCommand:
         if not os.path.isdir(self.options.path):
             raise KeyError('Output directory "{}" does not exist'.format(self.options.path))
 
-        discourse_to_document(self.options.url, format=self.options.format, output_path=self.options.path)
+        api_key = self.options.api_key or os.environ.get('DISCOURSE_API_KEY')
+
+        headers = {}
+        if api_key:
+            headers['Api-Key'] = api_key
+
+        # Acquire data and render using pandoc.
+        discourse_to_document(self.options.url, format=self.options.format, output_path=self.options.path, headers=headers)
 
 
-
-def discourse_to_document(url, format=None, output_path=None):
+def discourse_to_document(url, format=None, output_path=None, headers=None):
 
     format = format or 'pdf'
+    headers = headers or {}
 
     # Acquire all posts from topic.
     # Remark: The ``print=true`` option will return up to 1000 posts in a topic.
     # API Documentation: https://docs.discourse.org/#tag/Topics%2Fpaths%2F~1t~1%7Bid%7D.json%2Fget
     url = url + '.json?print=true'
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
+
+    try:
+        response.raise_for_status()
+    except:
+        log.exception('Failed requesting URL "{}". The response was:\n{}\n\n'.format(url, response.text))
+        raise
 
     # Extract information.
     data = response.json()
