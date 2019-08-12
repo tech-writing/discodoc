@@ -8,6 +8,7 @@ in progress
 - Make sure all posts of given topic will be fetched (up to 1000 for now).
 - Add Discourse Api-Key authentication against hitting anonymous rate limits
 - Improve documentation
+- Add "--renderer" option for adjusting rendering with "--format=pdf|html"
 
 
 2019-08-12 0.1.0
