@@ -19,18 +19,16 @@ class DiscodocCommand:
 
     def run(self):
 
+        # Run sanity checks and apply defaults.
+
         if self.options.path is None:
             self.options.path = os.getcwd()
 
         if not os.path.isdir(self.options.path):
             raise KeyError('Output directory "{}" does not exist'.format(self.options.path))
 
-        # Unique identifier generators
-        #if self.options.format == 'pdf':
         discourse_to_document(self.options.url, format=self.options.format, output_path=self.options.path)
 
-        #else:
-        #    raise KeyError('Output format "{}" not implemented'.format(self.options.format))
 
 
 def discourse_to_document(url, format=None, output_path=None):

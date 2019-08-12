@@ -19,13 +19,13 @@ discodoc
 *****
 About
 *****
-`discodoc` - create documents from Discourse content easily.
+`discodoc` - create `hard copy`_-like documents from Discourse content easily.
 
 It aims to make documentation generation effortless.
 
 There might still be dragons.
 
-
+.. _hard copy: https://en.wikipedia.org/wiki/Hard_copy
 
 *******
 Install
@@ -66,17 +66,17 @@ Synopsis
 Features
 ********
 All output formats are provided by pandoc fame. These have been tested:
-- pdf, docx, odt, pptx, epub2, epub3, fb2, latex, texinfo, html, html5
+pdf, docx, odt, pptx, epub2, epub3, fb2, latex, texinfo, html, html5, json, plain, rtf, revealjs, s5.
 
 
 *******
 Credits
 *******
-- `Donald Knuth`_ and the `LaTeX Team`_ for conceiving and maintaining TeX and LaTeX
-- `John MacFarlane`_ and all contributors for creating and curating pandoc_
-- The amazing `Discourse Team`_ and all contributors for creating Discourse and its spirit
+- `Donald Knuth`_ and the `LaTeX Team`_ for conceiving and maintaining TeX and LaTeX.
+- `John MacFarlane`_ and all contributors for creating and curating pandoc_.
+- The amazing `Discourse Team`_ and all contributors for creating Discourse and its spirit.
 
-Thanks!
+You know how you are. Thanks!
 
 
 **************

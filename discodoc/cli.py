@@ -14,12 +14,12 @@ log = logging.getLogger(__name__)
 
 def run():
     """
-    discodoc creates documents from Discourse content easily
+    discodoc - create hardcopy-like documents from Discourse content easily
 
     Usage:
-      vasuki <url> [--format=<format>] [--path=<output-path>] [--debug]
-      vasuki --version
-      vasuki (-h | --help)
+      discodoc <url> [--format=<format>] [--path=<output-path>] [--debug]
+      discodoc --version
+      discodoc (-h | --help)
 
     Options:
       --format=<format>                 Output format.

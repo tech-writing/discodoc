@@ -7,7 +7,7 @@ README = open(os.path.join(here, 'README.rst')).read()
 
 setup(name='discodoc',
       version='0.1.0',
-      description='Create documents from Discourse content easily',
+      description='Create hardcopy-like documents from Discourse content easily',
       long_description=README,
       license="AGPL 3, EUPL 1.2",
       classifiers=[
