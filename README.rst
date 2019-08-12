@@ -27,9 +27,28 @@ There might still be dragons.
 
 .. _hard copy: https://en.wikipedia.org/wiki/Hard_copy
 
-*******
-Install
-*******
+
+********
+Synopsis
+********
+::
+
+    # Generate PDF document from all posts of given topic.
+    discodoc https://community.hiveeyes.org/t/anleitung-aufbau-und-installation-des-sensor-kits-grune-platine/2443 --format=pdf
+
+For more information and further examples, please invoke ``discodoc --help``.
+
+
+********
+Features
+********
+All output formats are provided by pandoc fame. These have been tested:
+pdf, docx, odt, pptx, epub2, epub3, fb2, latex, texinfo, html, html5, json, plain, rtf, revealjs, s5.
+
+
+************
+Installation
+************
 
 Prerequisites
 =============
@@ -46,27 +65,19 @@ Optional::
 
     brew cask install wkhtmltopdf
 
+For HTML slideshow rendering::
+
+    yarn install
+
+
+    wget https://meyerweb.com/eric/tools/s5/v/1.1/s5-11.zip
+    cp -r ~/Downloads/s5-11/ui node_modules/s5
+
 Setup
 =====
 ::
 
     pip install discodoc
-
-
-********
-Synopsis
-********
-::
-
-    # Generate PDF document from all posts of given topic
-    discodoc https://community.hiveeyes.org/t/anleitung-aufbau-und-installation-des-sensor-kits-grune-platine/2443 --format=pdf
-
-
-********
-Features
-********
-All output formats are provided by pandoc fame. These have been tested:
-pdf, docx, odt, pptx, epub2, epub3, fb2, latex, texinfo, html, html5, json, plain, rtf, revealjs, s5.
 
 
 *******

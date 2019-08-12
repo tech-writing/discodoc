@@ -7,7 +7,7 @@ README = open(os.path.join(here, 'README.rst')).read()
 
 setup(name='discodoc',
       version='0.1.0',
-      description='Create hardcopy-like documents from Discourse content easily',
+      description='discodoc - create hardcopy-like documents from Discourse content easily',
       long_description=README,
       license="AGPL 3, EUPL 1.2",
       classifiers=[
@@ -41,7 +41,7 @@ setup(name='discodoc',
       author='Andreas Motl',
       author_email='andreas@hiveeyes.org',
       url='https://github.com/hiveeyes/discodoc',
-      keywords='discourse pandoc document export pdf epub',
+      keywords='discourse pandoc document hardcopy export pdf epub docx pptx odt html s5 reveal.js',
       packages=find_packages(),
       include_package_data=True,
       package_data={
