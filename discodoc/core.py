@@ -107,11 +107,14 @@ class DiscodocCommand:
         # Compute full output path.
         if self.options.path is not None:
             output_file = os.path.join(self.options.path, output_file)
-    
+
+        # https://stackoverflow.com/questions/13515893/set-margin-size-when-converting-from-markdown-to-pdf-with-pandoc
         command = 'pandoc ' \
                   '--standalone --self-contained --table-of-contents ' \
                   '--from html {pandoc_to} --resource-path=./node_modules ' \
+                  '--variable=geometry:margin=2cm ' \
                   '--metadata title="{title}" --output "{output_file}"'.format(**locals())
+
         log.info('Invoking command: %s', command)
     
         # Write sections to temporary files.
