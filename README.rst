@@ -43,7 +43,7 @@ For more information and further examples, please invoke ``discodoc --help``.
 Features
 ********
 All output formats are provided by pandoc fame. These have been tested:
-pdf, docx, odt, pptx, epub2, epub3, fb2, latex, texinfo, html, html5, json, plain, rtf, revealjs, s5.
+pdf, docx, odt, pptx, epub2, epub3, fb2, latex, texinfo, txt, text, html, html5, json, plain, rtf, revealjs, s5.
 
 
 ************
