@@ -5,7 +5,8 @@ discodoc usage
 ::
 
     $ discodoc --help
-        discodoc - create hardcopy-like documents from Discourse content easily
+
+        discodoc - create documents from Discourse content easily
 
         Usage:
           discodoc <url> [--format=<format>] [--renderer=<renderer>] [--path=<output-path>] [--api-key=<api-key>] [--debug]
