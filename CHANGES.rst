@@ -5,6 +5,10 @@ discodoc changelog
 
 in progress
 ===========
+
+
+2019-08-13 0.3.0
+================
 - To respect privacy, skip all whisper posts when collecting cooked HTML fragments
 - More detailed logging of post details while processing posts
 - Adjust margin size to 2cm when converting with pandoc
@@ -12,6 +16,8 @@ in progress
 - Propagate topic creation/update date to pandoc metadata
 - Add basic multi-topic rendering
 - Add "--enumerate" option to prefix output filename with sequence number
+- Add "--combine" option to assemble content from
+  multiple topics into a single document
 
 
 2019-08-12 0.2.0

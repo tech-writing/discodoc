@@ -3,7 +3,11 @@
 # License: GNU Affero General Public License, Version 3
 import sys
 import logging
+import tempfile
+from datetime import datetime
+
 from munch import munchify
+from rfc3339 import rfc3339
 
 log = logging.getLogger(__name__)
 
@@ -44,3 +48,23 @@ def normalize_options(options):
         normalized[key] = value
 
     return munchify(normalized)
+
+
+def tempfile_items(items):
+    # Write each fragment to a temporary file.
+    tempfiles = []
+    filenames = []
+    for item in items:
+        if not item:
+            continue
+        f = tempfile.NamedTemporaryFile(delete=True)
+        f.write(item.encode('utf-8'))
+        f.flush()
+        tempfiles.append(f)
+        filenames.append(f.name)
+
+    return tempfiles
+
+
+def now_rfc3339():
+    return rfc3339(datetime.utcnow(), utc=True, use_system_timezone=False)

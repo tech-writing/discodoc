@@ -17,7 +17,7 @@ def run():
     discodoc - create documents from Discourse content easily
 
     Usage:
-      discodoc [<url>...] [--format=<format>] [--renderer=<renderer>] [--output-path=<output-path>] [--enumerate] [--api-key=<api-key>] [--debug]
+      discodoc [<url>...] [options]
       discodoc --version
       discodoc (-h | --help)
 
@@ -31,6 +31,8 @@ def run():
                                         For HTML documents, the renderer is optional.
       --output-path=<output-path>       Output directory. Defaults to the current working directory.
       --enumerate                       Enumerate generated documents and prefix filename with index.
+      --combine                         Combine multiple topics into single document.
+      --title=<title>                   Title to use when combining documents.
       --api-key=<api-key>               Discourse API key. Can also be obtained through environment
                                         variable "DISCOURSE_API_KEY".
       --version                         Show version information
@@ -71,10 +73,7 @@ def run():
     Multi-topic examples::
 
         # Multiple PDF documents.
-        discodoc --format=pdf --output-path=var/tmp \
-            https://community.hiveeyes.org/t/teileliste-des-bob-hardware-kits/2103 \
-            https://community.hiveeyes.org/t/bee-observer-stockwaage-bauen/2457 \
-
+        discodoc --format=pdf --output-path=var/tmp https://community.hiveeyes.org/t/teileliste-des-bob-hardware-kits/2103 https://community.hiveeyes.org/t/bee-observer-stockwaage-bauen/2457 \
 
     """
 
@@ -95,4 +94,9 @@ def run():
 
     # Run command, optionally multiple times.
     command = DiscodocCommand(options)
+    try:
+        command.setup()
+    except Exception as ex:
+        raise DocoptExit('ERROR: {}'.format(ex))
+
     results = command.run()

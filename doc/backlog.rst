@@ -12,13 +12,16 @@ Prio 1
 - [x] Adjust margins of PDF document created through latex renderer
 - [x] Multi-topic acquisition by obtaining multiple urls from the command line
 - [x] Add "--enumerate" option to interpolate sequence number into output filename (prefix)
-- [o] Add "--combine" option to combine content from multiple topics into single document
+- [x] Add "--combine" option to combine content from multiple topics into single document
+- [x] Add "--title" option to obtain title from command line. Required for "--combine" option.
+- [o] With "--combine", add title from each topic as heading for each section
+- [o] Add full url to topic(s) into footer area of each document/section
 
 Prio 1.5
 ========
-- [o] Add "--index-url" option to ask discodoc to fetch a list of content URLs to process
-  from the designated posts on the referenced topic through the given index-url.
-- [o] Obtain title from command line
+- [o] Add "--index" option for using the given URL(s) as a
+  jump start index page for fetching a list of topic URLs to process.
+- [o] Optionally obtain pandoc metadata from command line
 
 Prio 2
 ======

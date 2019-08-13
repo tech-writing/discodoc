@@ -50,7 +50,8 @@ setup(name='discodoc',
       install_requires=[
           'docopt>=0.6.2',
           'munch>=2.3.2',
-          'requests'
+          'requests',
+          'rfc3339',
       ],
       extras_require={
       },
