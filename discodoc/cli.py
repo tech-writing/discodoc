@@ -17,7 +17,7 @@ def run():
     discodoc - create documents from Discourse content easily
 
     Usage:
-      discodoc [<url>...] [--format=<format>] [--renderer=<renderer>] [--output-path=<output-path>] [--api-key=<api-key>] [--debug]
+      discodoc [<url>...] [--format=<format>] [--renderer=<renderer>] [--output-path=<output-path>] [--enumerate] [--api-key=<api-key>] [--debug]
       discodoc --version
       discodoc (-h | --help)
 
@@ -30,6 +30,7 @@ def run():
                                         The default is to use the "pdflatex" renderer for creating PDF documents.
                                         For HTML documents, the renderer is optional.
       --output-path=<output-path>       Output directory. Defaults to the current working directory.
+      --enumerate                       Enumerate generated documents and prefix filename with index.
       --api-key=<api-key>               Discourse API key. Can also be obtained through environment
                                         variable "DISCOURSE_API_KEY".
       --version                         Show version information

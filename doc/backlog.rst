@@ -11,7 +11,7 @@ Prio 1
 - [x] To respect privacy, skip all whisper posts when collecting cooked HTML fragments
 - [x] Adjust margins of PDF document created through latex renderer
 - [x] Multi-topic acquisition by obtaining multiple urls from the command line
-- [o] Add "--enumerate" option to interpolate sequential number into output filename (prefix)
+- [x] Add "--enumerate" option to interpolate sequence number into output filename (prefix)
 - [o] Add "--combine" option to combine content from multiple topics into single document
 
 Prio 1.5

@@ -45,12 +45,23 @@ class DiscodocCommand:
 
     def run(self):
 
-        # Acquire data and render using pandoc.
-        for url in self.options.url:
-            self.discourse_to_document(url)
+        # How many zeros to use when padding the filename through "--enumerate".
+        enumeration_width = max(2, len(str(len(self.options.url))))
 
-    def discourse_to_document(self, url):
-    
+        # Acquire data and render using pandoc.
+        for index, url in enumerate(self.options.url):
+
+            # Optionally prefix filename with sequence number through "--enumerate".
+            filename_prefix = None
+            if self.options.enumerate:
+                seqnumber = str(index + 1).rjust(enumeration_width, '0')
+                filename_prefix = '{} - '.format(seqnumber)
+
+            self.discourse_to_document(url, filename_prefix=filename_prefix)
+
+    def discourse_to_document(self, url, filename_prefix=None):
+
+        filename_prefix = filename_prefix or ''
         self.options.format = self.options.format or 'pdf'
 
         # Acquire all posts from topic.
@@ -90,16 +101,11 @@ class DiscodocCommand:
         # Debugging.
         #print(title); print(sections)
 
-        tplvars = {
-            'title': title,
-            # FIXME: Collect authors of all posts
-            'author': '',
-            # Looks like this is actually updated_at.
-            'date': data['created_at'],
-        }
+        # FIXME: Collect authors of all posts
+        # Looks like "created_at" is actually "updated_at".
+        tplvars = {'title': title, 'author': '', 'date': data['created_at'], 'pandoc_to': ''}
 
         # Compute output filename extension, honoring "--renderer" option.
-        tplvars['pandoc_to'] = ''
         extension = self.options.format
         renderer = self.options.renderer
         if renderer is not None:
@@ -109,7 +115,7 @@ class DiscodocCommand:
             extension = '{}.{}'.format(renderer, extension)
 
         # Compute output file name.
-        output_file = '{}.{}'.format(title, extension)
+        output_file = '{}{}.{}'.format(filename_prefix, title, extension)
         log.info('Writing standalone file "{}"'.format(output_file))
 
         # Compute full output path.

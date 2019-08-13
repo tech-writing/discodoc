@@ -11,6 +11,7 @@ in progress
 - Rename "--path" parameter to "--output-path"
 - Propagate topic creation/update date to pandoc metadata
 - Add basic multi-topic rendering
+- Add "--enumerate" option to prefix output filename with sequence number
 
 
 2019-08-12 0.2.0
