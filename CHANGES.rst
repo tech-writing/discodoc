@@ -10,6 +10,7 @@ in progress
 - Adjust margin size to 2cm when converting with pandoc
 - Rename "--path" parameter to "--output-path"
 - Propagate topic creation/update date to pandoc metadata
+- Add basic multi-topic rendering
 
 
 2019-08-12 0.2.0

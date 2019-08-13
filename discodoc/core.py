@@ -46,7 +46,8 @@ class DiscodocCommand:
     def run(self):
 
         # Acquire data and render using pandoc.
-        self.discourse_to_document(self.options.url)
+        for url in self.options.url:
+            self.discourse_to_document(url)
 
     def discourse_to_document(self, url):
     

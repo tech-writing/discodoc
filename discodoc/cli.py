@@ -17,7 +17,7 @@ def run():
     discodoc - create documents from Discourse content easily
 
     Usage:
-      discodoc <url> [--format=<format>] [--renderer=<renderer>] [--output-path=<output-path>] [--api-key=<api-key>] [--debug]
+      discodoc [<url>...] [--format=<format>] [--renderer=<renderer>] [--output-path=<output-path>] [--api-key=<api-key>] [--debug]
       discodoc --version
       discodoc (-h | --help)
 
@@ -58,6 +58,14 @@ def run():
         # Generate HTML presentation/slideshow using S5.
         # https://meyerweb.com/eric/tools/s5/
         discodoc "$TOPIC_URL" --format=html --renderer=s5
+
+    Multi-topic examples::
+
+        # Multiple PDF documents.
+        discodoc --format=pdf --output-path=var/tmp \
+            https://community.hiveeyes.org/t/teileliste-des-bob-hardware-kits/2103 \
+            https://community.hiveeyes.org/t/bee-observer-stockwaage-bauen/2457 \
+
 
     """
 
