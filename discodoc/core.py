@@ -48,11 +48,10 @@ class DiscodocCommand:
         # Acquire data and render using pandoc.
         self.discourse_to_document(self.options.url)
 
-    def discourse_to_document(self, url, headers=None):
+    def discourse_to_document(self, url):
     
         self.options.format = self.options.format or 'pdf'
-        headers = headers or {}
-    
+
         # Acquire all posts from topic.
         # Remark: The ``print=true`` option will return up to 1000 posts in a topic.
         # API Documentation: https://docs.discourse.org/#tag/Topics%2Fpaths%2F~1t~1%7Bid%7D.json%2Fget
@@ -90,13 +89,21 @@ class DiscodocCommand:
         # Debugging.
         #print(title); print(sections)
 
+        tplvars = {
+            'title': title,
+            # FIXME: Collect authors of all posts
+            'author': '',
+            # Looks like this is actually updated_at.
+            'date': data['created_at'],
+        }
+
         # Compute output filename extension, honoring "--renderer" option.
-        pandoc_to = ''
+        tplvars['pandoc_to'] = ''
         extension = self.options.format
         renderer = self.options.renderer
         if renderer is not None:
             # Translate into pandoc's "--to" option.
-            pandoc_to = '--to={}'.format(renderer)
+            tplvars['pandoc_to'] = '--to={}'.format(renderer)
             # Build extension.
             extension = '{}.{}'.format(renderer, extension)
 
@@ -108,12 +115,16 @@ class DiscodocCommand:
         if self.options.output_path is not None:
             output_file = os.path.join(self.options.output_path, output_file)
 
+        tplvars['output_file'] = output_file
+
         # https://stackoverflow.com/questions/13515893/set-margin-size-when-converting-from-markdown-to-pdf-with-pandoc
         command = 'pandoc ' \
                   '--standalone --self-contained --table-of-contents ' \
-                  '--from html {pandoc_to} --resource-path=./node_modules ' \
+                  '--from=html {pandoc_to} --resource-path=./node_modules ' \
                   '--variable=geometry:margin=2cm ' \
-                  '--metadata title="{title}" --output "{output_file}"'.format(**locals())
+                  '--metadata=title="{title}" --metadata=date="{date}" --output="{output_file}"'.format(**tplvars)
+
+        # TODO: --metadata=author="{author}"
 
         log.info('Invoking command: %s', command)
     
