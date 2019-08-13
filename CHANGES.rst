@@ -8,6 +8,7 @@ in progress
 - To respect privacy, skip all whisper posts when collecting cooked HTML fragments
 - More detailed logging of post details while processing posts
 - Adjust margin size to 2cm when converting with pandoc
+- Rename "--path" parameter to "--output-path"
 
 
 2019-08-12 0.2.0

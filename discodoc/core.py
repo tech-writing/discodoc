@@ -27,12 +27,12 @@ class DiscodocCommand:
         """
 
         # Default output path.
-        if self.options.path is None:
-            self.options.path = os.getcwd()
+        if self.options.output_path is None:
+            self.options.output_path = os.getcwd()
 
         # Check output path.
-        if not os.path.isdir(self.options.path):
-            raise KeyError('Output directory "{}" does not exist'.format(self.options.path))
+        if not os.path.isdir(self.options.output_path):
+            raise KeyError('Output directory "{}" does not exist'.format(self.options.output_path))
 
         # Discourse Api-Key for authentication.
         api_key = self.options.api_key or os.environ.get('DISCOURSE_API_KEY')
@@ -105,8 +105,8 @@ class DiscodocCommand:
         log.info('Writing standalone file "{}"'.format(output_file))
 
         # Compute full output path.
-        if self.options.path is not None:
-            output_file = os.path.join(self.options.path, output_file)
+        if self.options.output_path is not None:
+            output_file = os.path.join(self.options.output_path, output_file)
 
         # https://stackoverflow.com/questions/13515893/set-margin-size-when-converting-from-markdown-to-pdf-with-pandoc
         command = 'pandoc ' \
