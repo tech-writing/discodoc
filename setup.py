@@ -6,7 +6,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(here, 'README.rst')).read()
 
 setup(name='discodoc',
-      version='0.2.0',
+      version='0.3.0',
       description='discodoc - create documents from Discourse content easily',
       long_description=README,
       license="AGPL 3, EUPL 1.2",

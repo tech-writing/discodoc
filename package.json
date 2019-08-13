@@ -1,7 +1,7 @@
 {
   "name": "discodoc-resources",
   "description": "discodoc - create hardcopy-like documents from Discourse content easily",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": [
     "AGPL 3",
     "EUPL 1.2"
