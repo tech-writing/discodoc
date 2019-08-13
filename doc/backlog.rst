@@ -9,8 +9,8 @@ Prio 1
 - [x] Resolve format <=> formatter intertwingulation
 - [x] Check presentation/slide rendering: beamer, reveal.js
 - [x] To respect privacy, skip all whisper posts when collecting cooked HTML fragments
-- [o] Improve layout, e.g. border and padding of PDF document created through latex renderer
-- [o] Multi-topic acquisition by obtaining multiple urls from the command line
+- [x] Adjust margins of PDF document created through latex renderer
+- [x] Multi-topic acquisition by obtaining multiple urls from the command line
 - [o] Add "--enumerate" option to interpolate sequential number into output filename (prefix)
 - [o] Add "--combine" option to combine content from multiple topics into single document
 

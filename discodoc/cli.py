@@ -36,26 +36,34 @@ def run():
       --debug                           Enable debug messages
       -h --help                         Show this screen
 
-    Examples::
+    Basic examples::
 
         # Define URL.
         export TOPIC_URL=https://community.hiveeyes.org/t/anleitung-aufbau-und-installation-des-sensor-kits-grune-platine/2443
 
-        # Generate PDF document from all posts of given topic.
+        # PDF document from all posts of given topic.
         # This uses the default "pdflatex" renderer.
         discodoc "$TOPIC_URL" --format=pdf
 
-        # Generate PDF document using the "wkhtmltopdf" renderer.
+        # PDF document using the "wkhtmltopdf" renderer.
         discodoc "$TOPIC_URL" --format=pdf --renderer=html
 
-        # Generate PDF slideshow using the "beamer" latex package.
+        # LibreOffice Writer compatible document from all posts of given topic.
+        discodoc "$TOPIC_URL" --format=odt
+
+        # Word compatible document from all posts of given topic.
+        discodoc "$TOPIC_URL" --format=docx
+
+    Presentation examples::
+
+        # PDF slides using the "beamer" latex package.
         discodoc "$TOPIC_URL" --format=pdf --renderer=beamer
 
-        # Generate HTML presentation/slideshow using reveal.js.
+        # HTML presentation/slideshow using reveal.js.
         # https://github.com/hakimel/reveal.js
         discodoc "$TOPIC_URL" --format=html --renderer=revealjs
 
-        # Generate HTML presentation/slideshow using S5.
+        # HTML presentation/slideshow using S5.
         # https://meyerweb.com/eric/tools/s5/
         discodoc "$TOPIC_URL" --format=html --renderer=s5
 
